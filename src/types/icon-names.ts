@@ -1,0 +1,1 @@
+export type IconName = "cup-hot" | "diagram" | "fridge" | "gas-stove" | "grid-1x2" | "grid-2x2" | "grid-3x3" | "heart-pressed" | "heart" | "map" | "microwave" | "shower" | "star-pressed" | "star" | "tv" | "water" | "wind";

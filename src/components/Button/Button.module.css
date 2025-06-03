@@ -1,0 +1,32 @@
+@import "../../styles/variables.css";
+
+.button {
+    border: none;
+    border-radius: var(--radius-full);
+    padding: 0.75rem 2rem;
+    font-weight: var(--font-weight-medium);
+    cursor: pointer;
+    transition:
+        background-color 0.2s ease,
+        border-color 0.2s ease;
+}
+
+.primary {
+    background-color: var(--color-red-500);
+    color: white;
+}
+
+.primary:hover {
+    background-color: var(--color-red-600);
+    color: white;
+}
+
+.outline {
+    background-color: transparent;
+    color: #111;
+    border: 1px solid var(--color-gray-700);
+}
+
+.outline:hover {
+    border: 1px solid var(--color-red-600);
+}

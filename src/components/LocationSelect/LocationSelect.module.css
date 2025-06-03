@@ -1,0 +1,50 @@
+@import "../../styles/variables.css";
+
+.field {
+    position: relative;
+    display: flex;
+    align-items: center;
+    background-color: var(--color-gray-50);
+    border-radius: 0.75rem;
+    padding: 0.75rem 1rem;
+}
+
+.icon {
+    width: 1rem;
+    height: 1rem;
+    margin-right: 0.75rem;
+    flex-shrink: 0;
+}
+
+.input {
+    background: transparent;
+    border: none;
+    color: var(--color-black);
+    outline: none;
+    flex: 1;
+}
+
+.dropdown {
+    position: absolute;
+    top: calc(100% + 0.25rem);
+    left: 0;
+    right: 0;
+    background-color: white;
+    border-radius: 0.75rem;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+    z-index: 10;
+    padding: 0.5rem 0;
+    max-height: 12rem;
+    overflow-y: auto;
+}
+
+.option {
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    font-size: 0.95rem;
+    color: var(--color-black);
+}
+
+.option:hover {
+    background-color: var(--color-gray-100);
+}

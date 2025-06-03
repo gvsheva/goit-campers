@@ -1,0 +1,40 @@
+@import "../../styles/variables.css";
+
+.toggle {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    width: 6rem;
+    height: 6rem;
+    border: 1px solid #e5e7eb;
+    border-radius: 1rem;
+    background-color: white;
+    color: #111827;
+    cursor: pointer;
+    transition:
+        border-color 0.2s ease,
+        background-color 0.2s ease;
+    user-select: none;
+    text-align: center;
+    font-weight: 500;
+}
+
+.checked {
+    border-color: var(--color-red-500);
+}
+
+.input {
+    display: none;
+}
+
+.icon {
+    width: 1.5rem;
+    height: 1.5rem;
+}
+
+.label {
+    font-size: 0.875rem;
+    font-weight: 500;
+}

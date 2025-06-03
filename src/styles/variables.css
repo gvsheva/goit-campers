@@ -1,0 +1,15 @@
+:root {
+    --color-black: #101828;
+    --color-gray-800: #475467;
+    --color-gray-700: #6c717b;
+    --color-gray-200: #dadde1;
+    --color-gray-100: #f2f4f7;
+    --color-gray-50: #f7f7f7;
+    --color-red-500: #e44848;
+    --color-red-600: #d84343;
+    --color-yellow-400: #ffc531;
+    --color-white: #ffffff;
+
+    --font-weight-medium: 500;
+    --radius-full: 9999px;
+}
