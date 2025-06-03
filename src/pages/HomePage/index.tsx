@@ -10,12 +10,13 @@ import DatePicker from "../../components/DatePicker";
 import FilterToggleGroup, {
   type FilterItem,
 } from "../../components/FilterToggleGroup";
+import CamperMeta from "../../components/CamperMeta";
 
 const vehicleEquipment = [
-  { icon: "wind", label: "AC", name: "ac" },
+  { icon: "wind", label: "AC", name: "AC" },
   { icon: "diagram", label: "Automatic", name: "automatic" },
   { icon: "cup-hot", label: "Kitchen", name: "kitchen" },
-  { icon: "tv", label: "TV", name: "tv" },
+  { icon: "tv", label: "TV", name: "TV" },
   { icon: "shower", label: "Bathroom", name: "bathroom" },
 ] as FilterItem[];
 
@@ -68,6 +69,8 @@ const HomePage = () => {
         selected={selectedTypes}
         onChange={setSelectedTypes}
       />
+
+      <CamperMeta rating={4.4} reviewsCount={10} location="Kyiv, Ukraine" />
     </div>
   );
 };
