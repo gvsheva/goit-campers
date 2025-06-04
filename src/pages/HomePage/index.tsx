@@ -1,5 +1,5 @@
 import { useState } from "react";
-import Category from "../../components/Category";
+import Feature from "../../components/Feature";
 import HeartToggle from "../../components/HeartToggle";
 import css from "./HomePage.module.css";
 import FilterToggle from "../../components/FilterToggle";
@@ -36,7 +36,7 @@ const HomePage = () => {
       <h1>Welcome to the Home Page</h1>
       <p>This is the main page of our application.</p>
       <Button>Click me!</Button>
-      <Category icon="microwave" label="Microwave" />
+      <Feature icon="microwave" label="Microwave" />
       <HeartToggle checked={checked} onChange={setChecked} />
       <FilterToggle
         icon="wind"

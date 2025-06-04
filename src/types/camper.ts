@@ -9,19 +9,31 @@ export interface CamperReview {
     comment: string;
 }
 
-export type CamperType = "alcove" | "fullyIntegrated" | "panelTruck";
-export type CamperTransmission = "automatic" | "manual";
-export type CamperEngine = "diesel" | "hybrid" | "petrol";
-export type CamperFeature =
-    | "AC"
-    | "bathroom"
-    | "kitchen"
-    | "TV"
-    | "radio"
-    | "refrigerator"
-    | "microwave"
-    | "gas"
-    | "water";
+export const allCamperTypes = [
+    "alcove",
+    "fullyIntegrated",
+    "panelTruck",
+] as const;
+export type CamperType = (typeof allCamperTypes)[number];
+
+export const allCamperTransmissions = ["automatic", "manual"] as const;
+export type CamperTransmission = (typeof allCamperTransmissions)[number];
+
+export const allCamperEngines = ["diesel", "hybrid", "petrol"] as const;
+export type CamperEngine = (typeof allCamperEngines)[number];
+
+export const allCamperFeatures = [
+    "AC",
+    "bathroom",
+    "kitchen",
+    "TV",
+    "radio",
+    "refrigerator",
+    "microwave",
+    "gas",
+    "water",
+] as const;
+export type CamperFeature = (typeof allCamperFeatures)[number];
 
 export interface Camper extends Record<CamperFeature, boolean> {
     id: string;

@@ -1,6 +1,6 @@
 @import "../../styles/variables.css";
 
-.category {
+.feature {
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
@@ -13,7 +13,7 @@
     transition: background-color 0.2s ease;
 }
 
-.category:hover {
+.feature:hover {
     background-color: var(--color-gray-200);
 }
 

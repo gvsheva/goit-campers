@@ -1,20 +1,20 @@
 import React from "react";
-import css from "./Category.module.css";
+import css from "./Feature.module.css";
 import Icon from "../Icon";
 import type { IconName } from "../../types/icon-names";
 
-interface CategoryProps {
+interface FeatureProps {
   icon: IconName;
   label: string;
 }
 
-const Category: React.FC<CategoryProps> = ({ icon, label }) => {
+const Feature: React.FC<FeatureProps> = ({ icon, label }) => {
   return (
-    <button className={css.category}>
+    <button className={css.feature}>
       <Icon name={icon} className={css.icon} />
       <span className={css.label}>{label}</span>
     </button>
   );
 };
 
-export default Category;
+export default Feature;

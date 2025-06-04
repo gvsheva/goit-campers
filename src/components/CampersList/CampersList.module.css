@@ -1,0 +1,21 @@
+@import "../../styles/variables.css";
+
+.list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    padding: 0;
+    margin: 0;
+}
+
+.item {
+    border-radius: 1.5rem;
+    overflow: hidden;
+}
+
+.loadMoreWrapper {
+    margin-top: 2rem;
+    display: flex;
+    justify-content: center;
+}
