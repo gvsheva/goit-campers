@@ -48,3 +48,10 @@
 .option:hover {
     background-color: var(--color-gray-100);
 }
+
+.loading {
+    padding: 0.5rem 1rem;
+    font-size: 0.875rem;
+    color: var(--color-gray-700);
+    text-align: center;
+}

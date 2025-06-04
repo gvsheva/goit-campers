@@ -2,18 +2,20 @@ import React, { useState, useRef, useEffect } from "react";
 import css from "./LocationSelect.module.css";
 import Icon from "../Icon";
 
-interface LocationSelectProps {
+interface LocationSelectProps
+  extends Omit<React.InputHTMLAttributes<HTMLInputElement>, "onChange"> {
   options: string[];
   value?: string;
+  loading?: boolean;
   onChange: (value: string) => void;
-  placeholder?: string;
 }
 
 const LocationSelect: React.FC<LocationSelectProps> = ({
   options,
   value = "",
+  loading,
   onChange,
-  placeholder = "City",
+  ...props
 }) => {
   const [query, setQuery] = useState(value);
   const [isOpen, setIsOpen] = useState(false);
@@ -22,6 +24,10 @@ const LocationSelect: React.FC<LocationSelectProps> = ({
   const filtered = options.filter((opt) =>
     opt.toLowerCase().includes(query.toLowerCase()),
   );
+
+  useEffect(() => {
+    setQuery(value);
+  }, [value]);
 
   useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {
@@ -33,9 +39,14 @@ const LocationSelect: React.FC<LocationSelectProps> = ({
 
   const handleSelect = (val: string) => {
     setQuery(val);
-    onChange(val);
     setIsOpen(false);
   };
+
+  useEffect(() => {
+    if (!isOpen) {
+      onChange(query);
+    }
+  }, [isOpen]);
 
   return (
     <div className={css.field} ref={ref}>
@@ -48,20 +59,33 @@ const LocationSelect: React.FC<LocationSelectProps> = ({
           setIsOpen(true);
         }}
         onFocus={() => setIsOpen(true)}
-        placeholder={placeholder}
+        onKeyDown={(e) => {
+          if (!isOpen) {
+            return;
+          }
+          if (e.key === "Escape") {
+            e.preventDefault();
+            setIsOpen(false);
+          }
+        }}
         className={css.input}
+        {...props}
       />
       {isOpen && filtered.length > 0 && (
         <ul className={css.dropdown}>
-          {filtered.map((option) => (
-            <li
-              key={option}
-              className={css.option}
-              onClick={() => handleSelect(option)}
-            >
-              {option}
-            </li>
-          ))}
+          {loading ? (
+            <li className={css.loading}>Loading...</li>
+          ) : (
+            filtered.map((option) => (
+              <li
+                key={option}
+                className={css.option}
+                onClick={() => handleSelect(option)}
+              >
+                {option}
+              </li>
+            ))
+          )}
         </ul>
       )}
     </div>

@@ -40,8 +40,8 @@ const FilterToggleGroup: React.FC<FilterToggleGroupProps> = ({
             name={name}
             icon={icon}
             label={label}
-            checked={selected.includes(label)}
-            onChange={() => toggle(label)}
+            checked={selected.includes(name)}
+            onChange={() => toggle(name)}
           />
         ))}
       </div>
