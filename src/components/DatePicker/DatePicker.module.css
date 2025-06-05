@@ -8,15 +8,12 @@
 }
 
 .input {
-    width: 100%;
-    padding: 0.75rem 1rem;
-    border: none;
-    border-radius: 0.75rem;
-    background-color: var(--color-gray-50);
-    color: var(--color-black);
-    text-align: left;
-    font-size: 0.95rem;
     cursor: pointer;
+}
+
+.placeholder {
+    color: var(--color-gray-700);
+    opacity: 1;
 }
 
 .calendar {
@@ -99,6 +96,13 @@
 
 .day:hover {
     background-color: var(--color-gray-100);
+}
+
+.day:disabled {
+    color: var(--color-gray-400);
+    cursor: not-allowed;
+    pointer-events: none;
+    opacity: 0.5;
 }
 
 .selected {

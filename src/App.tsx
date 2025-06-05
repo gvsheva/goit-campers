@@ -6,8 +6,8 @@ import DetailsPage, {
   FeaturesSection,
   ReviewsSection,
 } from "./pages/DetailsPage";
-import NotFoundPage from "./pages/NotFoundPage";
 import Navbar from "./components/Navbar";
+import ErrorPage from "./pages/ErrorPage";
 
 function App() {
   return (
@@ -19,12 +19,13 @@ function App() {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/catalog" element={<CatalogPage />} />
-          <Route path="/catalog/:id" element={<DetailsPage />}>
-            <Route path="features" element={<FeaturesSection />} />
+          <Route path="/catalog/:id/" element={<DetailsPage />}>
+            <Route path="" element={<FeaturesSection />} index />
             <Route path="reviews" element={<ReviewsSection />} />
           </Route>
-          <Route path="/404" element={<NotFoundPage />} />
-          <Route path="/*" element={<NotFoundPage />} />
+          <Route path="/error" element={<ErrorPage />} />
+          <Route path="/404" element={<ErrorPage />} />
+          <Route path="/*" element={<ErrorPage />} />
         </Routes>
       </main>
     </>

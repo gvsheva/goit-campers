@@ -1,0 +1,38 @@
+@import "../../styles/variables.css";
+
+.box {
+    background-color: var(--color-gray-50);
+    border-radius: 1rem;
+    padding: 3rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 1.5rem;
+}
+
+.section {
+    border-top: 1px solid var(--color-gray-200);
+    padding-top: 1.25rem;
+}
+
+.heading {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--color-black);
+    margin-bottom: 1rem;
+}
+
+.details {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    row-gap: 0.75rem;
+    font-size: 0.875rem;
+    color: var(--color-gray-800);
+}
+
+.details span:nth-child(odd) {
+    font-weight: 500;
+}
+.details span:nth-child(even) {
+    justify-self: end;
+}

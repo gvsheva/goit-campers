@@ -7,3 +7,7 @@
 .filtersContainer {
     max-width: 360px;
 }
+
+.camperslistcontainer {
+    flex: 1;
+}

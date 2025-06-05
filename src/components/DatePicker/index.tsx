@@ -9,24 +9,35 @@ import {
   addMonths,
   subMonths,
   isBefore,
+  parse,
 } from "date-fns";
+import classNames from "classnames";
 import css from "./DatePicker.module.css";
+import Input from "../Input";
 
-interface DatePickerProps {
-  value?: Date;
-  onChange: (date: Date) => void;
-  placeholder?: string;
+interface DatePickerProps
+  extends Omit<React.InputHTMLAttributes<HTMLInputElement>, "onChange"> {
+  value?: string;
+  className?: string;
+  onChange?: (value: string) => void;
 }
 
 const DatePicker: React.FC<DatePickerProps> = ({
   value,
+  className,
   onChange,
-  placeholder = "Select a date between today",
+  ...props
 }) => {
-  const [selected, setSelected] = useState<Date | null>(value || null);
+  const [selected, setSelected] = useState<Date | null>(
+    value ? parse(value, "PPPP", new Date()) : null,
+  );
   const [isOpen, setIsOpen] = useState(false);
   const [month, setMonth] = useState(new Date());
   const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    setSelected(value ? parse(value, "PPPP", new Date()) : null);
+  }, [value]);
 
   useEffect(() => {
     const handler = (e: MouseEvent) => {
@@ -43,19 +54,19 @@ const DatePicker: React.FC<DatePickerProps> = ({
 
   const handleDateClick = (date: Date) => {
     setSelected(date);
-    onChange(date);
     setIsOpen(false);
+    onChange?.(format(date, "PPPP"));
   };
 
   return (
-    <div className={css.wrapper} ref={ref}>
-      <button
+    <div className={classNames(css.wrapper, className)} ref={ref}>
+      <Input
+        {...props}
+        readOnly
         className={css.input}
+        value={selected ? format(selected, "PPPP") : ""}
         onClick={() => setIsOpen(true)}
-        type="button"
-      >
-        {selected ? format(selected, "PPP") : placeholder}
-      </button>
+      />
 
       {isOpen && (
         <div className={css.calendar}>

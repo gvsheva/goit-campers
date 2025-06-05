@@ -30,3 +30,15 @@
 .outline:hover {
     border: 1px solid var(--color-red-600);
 }
+
+.button:disabled {
+    background-color: var(--color-gray-100);
+    border: 1px solid var(--color-gray-200);
+    color: var(--color-gray-500);
+    cursor: not-allowed;
+}
+
+.spinner {
+    width: 1rem;
+    height: 1rem;
+}

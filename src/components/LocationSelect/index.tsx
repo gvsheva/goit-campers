@@ -58,7 +58,10 @@ const LocationSelect: React.FC<LocationSelectProps> = ({
           setQuery(e.target.value);
           setIsOpen(true);
         }}
-        onFocus={() => setIsOpen(true)}
+        onFocus={(e) => {
+          e.currentTarget.select();
+          setIsOpen(true);
+        }}
         onKeyDown={(e) => {
           if (!isOpen) {
             return;

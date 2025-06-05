@@ -36,3 +36,21 @@ export const axiosBaseQuery =
             };
         }
     };
+
+const randomDelay = (min: number, max: number) => {
+    return new Promise((resolve) => {
+        const delay = Math.floor(Math.random() * (max - min + 1)) + min;
+        setTimeout(resolve, delay);
+    });
+};
+
+export const nullBaseQuery =
+    (): BaseQueryFn<
+        { minDelay?: number; maxDelay?: number },
+        unknown,
+        unknown
+    > =>
+    async ({ minDelay = 500, maxDelay = 5000 }) => {
+        await randomDelay(minDelay, maxDelay);
+        return { data: null };
+    };

@@ -1,22 +1,19 @@
 import { createApi } from "@reduxjs/toolkit/query/react";
-import { axiosBaseQuery } from "./api";
+import { nullBaseQuery } from "./api";
 
 const devNullApi = createApi({
     reducerPath: "devnull",
-    baseQuery: axiosBaseQuery({
-        baseUrl: "https://devnull-as-a-service.com/dev/null",
-    }),
+    baseQuery: nullBaseQuery(),
     endpoints(build) {
         return {
-            devNull: build.query<void, void>({
-                query: () => {
-                    return { url: "", method: "POST" };
+            devNull: build.mutation<void, any>({
+                query: (_data: any) => {
+                    return { minDelay: 1000, maxDelay: 3000 };
                 },
-                transformResponse: () => undefined,
             }),
         };
     },
 });
 
-export const { useDevNullQuery } = devNullApi;
+export const { useDevNullMutation } = devNullApi;
 export default devNullApi;

@@ -8,7 +8,9 @@ const CatalogPage = () => {
       <div className={css.filtersContainer}>
         <Filters />
       </div>
-      <CampersList />
+      <div className={css.camperslistcontainer}>
+        <CampersList />
+      </div>
     </div>
   );
 };

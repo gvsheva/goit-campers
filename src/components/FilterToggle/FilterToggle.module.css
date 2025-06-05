@@ -6,8 +6,8 @@
     justify-content: center;
     align-items: center;
     gap: 0.5rem;
-    width: 6rem;
-    height: 6rem;
+    width: 112px;
+    height: 96px;
     border: 1px solid var(--color-gray-200);
     border-radius: 1rem;
     background-color: var(--color-white);
@@ -19,6 +19,7 @@
     user-select: none;
     text-align: center;
     font-weight: 500;
+    padding: 1rem 2rem;
 }
 
 .toggle:hover {
@@ -34,11 +35,12 @@
 }
 
 .icon {
-    width: 1.5rem;
-    height: 1.5rem;
+    width: 2rem;
+    height: 2rem;
 }
 
 .label {
+    line-height: 1rem;
     font-size: 0.875rem;
     font-weight: 500;
 }

@@ -1,76 +1,25 @@
-import { useState } from "react";
-import Feature from "../../components/Feature";
-import HeartToggle from "../../components/HeartToggle";
-import css from "./HomePage.module.css";
-import FilterToggle from "../../components/FilterToggle";
+import { useNavigate } from "react-router";
 import Button from "../../components/Button";
-import Input from "../../components/Input";
-import LocationSelect from "../../components/LocationSelect";
-import DatePicker from "../../components/DatePicker";
-import FilterToggleGroup, {
-  type FilterItem,
-} from "../../components/FilterToggleGroup";
-import CamperMeta from "../../components/CamperMeta";
-
-const vehicleEquipment = [
-  { icon: "wind", label: "AC", name: "AC" },
-  { icon: "diagram", label: "Automatic", name: "automatic" },
-  { icon: "cup-hot", label: "Kitchen", name: "kitchen" },
-  { icon: "tv", label: "TV", name: "TV" },
-  { icon: "shower", label: "Bathroom", name: "bathroom" },
-] as FilterItem[];
-
-const vehicleTypes = [
-  { icon: "grid-1x2", label: "Van", name: "van" },
-  { icon: "grid-2x2", label: "Fully Integrated", name: "integrated" },
-  { icon: "grid-3x3", label: "Alcove", name: "alcove" },
-] as FilterItem[];
+import css from "./HomePage.module.css";
 
 const HomePage = () => {
-  const [checked, setChecked] = useState(false);
-  const [location, setLocation] = useState("");
-  const [selectedEquipment, setSelectedEquipment] = useState<string[]>([]);
-  const [selectedTypes, setSelectedTypes] = useState<string[]>([]);
+  const navigate = useNavigate();
   return (
-    <div className={css.container}>
-      <h1>Welcome to the Home Page</h1>
-      <p>This is the main page of our application.</p>
-      <Button>Click me!</Button>
-      <Feature icon="microwave" label="Microwave" />
-      <HeartToggle checked={checked} onChange={setChecked} />
-      <FilterToggle
-        icon="wind"
-        label="AC"
-        checked={checked}
-        onChange={setChecked}
-      />
-      <LocationSelect
-        value={location}
-        onChange={setLocation}
-        options={["Kyiv, Ukraine", "Lviv, Ukraine", "Odesa, Ukraine"]}
-      />
-      <Input placeholder="Some text here" />
-      <Input />
-      <DatePicker
-        value={new Date()}
-        onChange={(date) => console.log("Selected:", date)}
-      />
-
-      <FilterToggleGroup
-        title="Vehicle equipment"
-        items={vehicleEquipment}
-        selected={selectedEquipment}
-        onChange={setSelectedEquipment}
-      />
-
-      <FilterToggleGroup
-        title="Vehicle type"
-        items={vehicleTypes}
-        selected={selectedTypes}
-        onChange={setSelectedTypes}
-      />
-
-      <CamperMeta rating={4.4} reviewsCount={10} location="Kyiv, Ukraine" />
+    <div className={css.wrapper}>
+      <div className={css.overlay}>
+        <h1 className={css.heading}>Campers of your dreams</h1>
+        <p className={css.text}>
+          You can find everything you want in our catalog
+        </p>
+        <Button
+          className={css.button}
+          onClick={() => {
+            navigate("/catalog");
+          }}
+        >
+          View Now
+        </Button>
+      </div>
     </div>
   );
 };

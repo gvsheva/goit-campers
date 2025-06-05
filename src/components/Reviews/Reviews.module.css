@@ -1,0 +1,44 @@
+@import "../../styles/variables.css";
+
+.list {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.review {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.header {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+.avatar {
+    width: 2.5rem;
+    height: 2.5rem;
+    background-color: var(--color-gray-100);
+    color: var(--color-red-500);
+    font-weight: 700;
+    font-size: 1.1rem;
+    border-radius: 9999px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.name {
+    font-weight: 600;
+    margin: 0;
+    color: var(--color-black);
+}
+
+.comment {
+    font-size: 0.95rem;
+    color: var(--color-gray-800);
+    line-height: 1.5;
+}
