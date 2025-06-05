@@ -5,6 +5,7 @@ import Feature from "../Feature";
 import Button from "../Button";
 import CamperMeta from "../CamperMeta";
 import HeartToggle from "../HeartToggle";
+import { useNavigate } from "react-router";
 
 const featuresMap = {
   AC: <Feature icon="wind" label="AC" />,
@@ -23,13 +24,9 @@ const featuresMap = {
 
 interface CamperListCardProps {
   camper: Camper;
-  onShowMore: () => void;
 }
 
-const CamperListCard: React.FC<CamperListCardProps> = ({
-  camper,
-  onShowMore,
-}) => {
+const CamperListCard: React.FC<CamperListCardProps> = ({ camper }) => {
   const {
     name,
     price,
@@ -40,12 +37,10 @@ const CamperListCard: React.FC<CamperListCardProps> = ({
     gallery,
     engine,
     transmission,
-    ...rest
   } = camper;
-
   const features = [];
   for (const f of allCamperFeatures) {
-    if (rest[f]) {
+    if (camper[f]) {
       features.push(featuresMap[f]);
     }
   }
@@ -55,6 +50,7 @@ const CamperListCard: React.FC<CamperListCardProps> = ({
   if (transmission === "automatic") {
     features.push(featuresMap.automatic);
   }
+  const navigate = useNavigate();
 
   return (
     <div className={css.card}>
@@ -71,7 +67,12 @@ const CamperListCard: React.FC<CamperListCardProps> = ({
         <p className={css.description}>{description}</p>
         <div className={css.features}>{...features}</div>
         <div className={css.buttonContainer}>
-          <Button variant="primary" onClick={onShowMore}>
+          <Button
+            variant="primary"
+            onClick={() => {
+              navigate(`${camper.id}`);
+            }}
+          >
             Show more
           </Button>
         </div>

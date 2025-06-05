@@ -5,7 +5,9 @@ import CampersList from "../../components/CampersList";
 const CatalogPage = () => {
   return (
     <div className={css.container}>
-      <Filters />
+      <div className={css.filtersContainer}>
+        <Filters />
+      </div>
       <CampersList />
     </div>
   );
