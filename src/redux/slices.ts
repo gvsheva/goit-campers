@@ -27,3 +27,21 @@ const filtersSlice = createSlice({
 
 export const { setFilters } = filtersSlice.actions;
 export const filtersReducer = filtersSlice.reducer;
+
+const favoritesSlice = createSlice({
+    name: "favorites",
+    initialState: [] as string[],
+    reducers: {
+        addToFavorites: (state, action: PayloadAction<string>) => {
+            if (!state.includes(action.payload)) {
+                state.push(action.payload);
+            }
+        },
+        removeFromFavorites: (state, action: PayloadAction<string>) => {
+            return state.filter((id) => id !== action.payload);
+        },
+    },
+});
+
+export const { addToFavorites, removeFromFavorites } = favoritesSlice.actions;
+export const favoritesReducer = favoritesSlice.reducer;

@@ -6,15 +6,20 @@ import CamperMeta from "../CamperMeta";
 import HeartToggle from "../HeartToggle";
 import { useNavigate } from "react-router";
 import CamperFeaturesList from "../CamperFeaturesList";
+import { useAppDispatch, useAppSelector } from "../../hooks";
+import { selectFavorites } from "../../redux/selectors";
+import { addToFavorites, removeFromFavorites } from "../../redux/slices";
 
 interface CamperListCardProps {
   camper: Camper;
 }
 
 const CamperListCard: React.FC<CamperListCardProps> = ({ camper }) => {
-  const { name, price, location, rating, reviews, description, gallery } =
+  const { id, name, price, location, rating, reviews, description, gallery } =
     camper;
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
+  const favorites = useAppSelector(selectFavorites);
 
   return (
     <div className={css.card}>
@@ -24,7 +29,12 @@ const CamperListCard: React.FC<CamperListCardProps> = ({ camper }) => {
           <h3 className={css.title}>{name}</h3>
           <div className={css.headerRight}>
             <span className={css.price}>€{price.toFixed(2)}</span>
-            <HeartToggle />
+            <HeartToggle
+              checked={favorites.includes(id)}
+              onChange={(v) =>
+                dispatch((v ? addToFavorites : removeFromFavorites)(id))
+              }
+            />
           </div>
         </div>
         <CamperMeta {...{ rating, location }} reviewsCount={reviews.length} />

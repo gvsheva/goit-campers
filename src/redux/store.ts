@@ -1,17 +1,30 @@
-import { configureStore } from "@reduxjs/toolkit";
+import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import { setupListeners } from "@reduxjs/toolkit/query";
 import campersApi from "./api/campers";
 import devNullApi from "./api/dev-null";
-import { filtersReducer } from "./slices";
+import { favoritesReducer, filtersReducer } from "./slices";
+import storage from "redux-persist/lib/storage";
+import { persistReducer, persistStore } from "redux-persist";
+
+const persistConfig = {
+    key: "root",
+    storage,
+    whitelist: ["favorites"],
+};
+
+const reducer = combineReducers({
+    [campersApi.reducerPath]: campersApi.reducer,
+    [devNullApi.reducerPath]: devNullApi.reducer,
+    filters: filtersReducer,
+    favorites: favoritesReducer,
+});
+
+const persistedReducer = persistReducer(persistConfig, reducer);
 
 const store = configureStore({
-    reducer: {
-        [campersApi.reducerPath]: campersApi.reducer,
-        [devNullApi.reducerPath]: devNullApi.reducer,
-        filters: filtersReducer,
-    },
+    reducer: persistedReducer,
     middleware: (getDefaultMiddleware) =>
-        getDefaultMiddleware().concat(
+        getDefaultMiddleware({ serializableCheck: false }).concat(
             campersApi.middleware,
             devNullApi.middleware,
         ),
@@ -23,3 +36,5 @@ export type AppDispatch = typeof store.dispatch;
 
 export type RootState = ReturnType<typeof store.getState>;
 export default store;
+
+export const persistor = persistStore(store);
