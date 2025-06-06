@@ -1,6 +1,6 @@
 import React, { Suspense, useMemo } from "react";
 import type { IconName } from "../../types/icon-names";
-import Spinner from "../Spinner";
+import LoadingOverlay from "../LoaderOverlay";
 import css from "./Icon.module.css";
 import classNames from "classnames";
 
@@ -23,7 +23,7 @@ const Icon: React.FC<IconProps> = ({ name, className, ...props }) => {
   }, [name]);
   return (
     <div className={classNames(className, css.wrapper)}>
-      <Suspense fallback={<Spinner className={css.spinner} />}>
+      <Suspense fallback={<LoadingOverlay className={css.loading} />}>
         <SvgIcon {...props} className={css.icon} />
       </Suspense>
     </div>
