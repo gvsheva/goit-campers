@@ -28,7 +28,7 @@ const Details: React.FC<DetalsProps> = ({ camper }) => {
           location={camper.location}
         />
       </div>
-      <div className={css.price}>€{camper.price.toFixed(2)}</div>
+      <div className={css.price}>€{camper.price.toFixed(0)}</div>
       {images.length > 0 ? (
         <Gallery images={camper.gallery || []} />
       ) : (

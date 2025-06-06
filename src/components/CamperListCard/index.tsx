@@ -33,7 +33,7 @@ const CamperListCard: React.FC<CamperListCardProps> = ({ camper }) => {
         <div className={css.header}>
           <h3 className={css.title}>{name}</h3>
           <div className={css.headerRight}>
-            <span className={css.price}>€{price.toFixed(2)}</span>
+            <span className={css.price}>€{price.toFixed(0)}</span>
             <HeartToggle
               checked={favorites.includes(id)}
               onChange={(v) =>
