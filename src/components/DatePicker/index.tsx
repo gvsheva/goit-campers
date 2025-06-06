@@ -15,11 +15,8 @@ import classNames from "classnames";
 import css from "./DatePicker.module.css";
 import Input from "../Input";
 
-interface DatePickerProps
-  extends Omit<React.InputHTMLAttributes<HTMLInputElement>, "onChange"> {
+interface DatePickerProps extends React.ComponentProps<typeof Input> {
   value?: string;
-  className?: string;
-  onChange?: (value: string) => void;
 }
 
 const DatePicker: React.FC<DatePickerProps> = ({

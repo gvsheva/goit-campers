@@ -1,29 +1,57 @@
 import React, { useState } from "react";
 import css from "./BookingForm.module.css";
+import * as yup from "yup";
 import Input from "../Input";
 import DatePicker from "../DatePicker";
 import Button from "../Button";
 import { useDevNullMutation } from "../../redux/api/dev-null";
 
+const schema = yup.object({
+  name: yup.string().required().min(1).max(100),
+  email: yup.string().required().email().max(100),
+  date: yup.string().required(),
+  comment: yup.string().max(1000),
+});
+
 const BookingForm: React.FC = () => {
-  const empty = {
+  const initForm = {
     name: "",
     email: "",
     date: "",
     comment: "",
   };
-  const [form, setForm] = useState(empty);
+  const [form, setForm] = useState(initForm);
+  const initErrors = {
+    name: undefined as string | undefined,
+    email: undefined as string | undefined,
+    date: undefined as string | undefined,
+    comment: undefined as string | undefined,
+  };
+  const [errors, setErrors] = useState(initErrors);
 
   const handleChange = ({ name, value }: { name: string; value: string }) => {
     setForm({ ...form, [name]: value });
   };
 
-  const [submite, { isLoading: isSubmiting }] = useDevNullMutation();
+  const [submit, { isLoading: isSubmiting }] = useDevNullMutation();
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    setErrors(initErrors);
     console.log("Booking submitted:", form);
+    try {
+      schema.validateSync(form, { abortEarly: false });
+    } catch (err) {
+      if (err instanceof yup.ValidationError) {
+        setErrors({
+          ...err.inner.reduce((n, e) => {
+            return { ...n, [e.path!]: e.message };
+          }, {}),
+        });
+      }
+      return;
+    }
     /* setForm(empty); */
-    submite(form);
+    submit(form);
   };
 
   return (
@@ -34,21 +62,19 @@ const BookingForm: React.FC = () => {
       </p>
 
       <Input
-        type="text"
         name="name"
         value={form.name}
         onChange={(value) => handleChange({ name: "name", value })}
         placeholder="Name*"
-        required
+        error={errors.name}
       />
 
       <Input
-        type="email"
         name="email"
         value={form.email}
         onChange={(value) => handleChange({ name: "email", value })}
         placeholder="Email*"
-        required
+        error={errors.email}
       />
 
       <DatePicker
@@ -56,7 +82,7 @@ const BookingForm: React.FC = () => {
         value={form.date}
         onChange={(value) => handleChange({ name: "date", value })}
         placeholder="Booking date*"
-        required
+        error={errors.date}
       />
 
       <textarea
