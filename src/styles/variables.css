@@ -5,10 +5,13 @@
     --color-gray-200: #dadde1;
     --color-gray-100: #f2f4f7;
     --color-gray-50: #f7f7f7;
+    --color-white: #ffffff;
+
+    --color-blue-600: #2563eb;
+    --color-green-600: #16a34a;
+    --color-yellow-600: #ca8a04;
     --color-red-500: #e44848;
     --color-red-600: #d84343;
-    --color-yellow-400: #ffc531;
-    --color-white: #ffffff;
 
     --font-weight-medium: 500;
     --radius-full: 9999px;

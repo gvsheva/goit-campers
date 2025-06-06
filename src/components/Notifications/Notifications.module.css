@@ -1,0 +1,57 @@
+@import "../../styles/variables.css";
+
+.container {
+    position: fixed;
+    top: 1rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    z-index: 9999;
+}
+
+.notification {
+    position: relative;
+    padding: 0.75rem 2.5rem 0.75rem 1rem;
+    border-radius: 0.5rem;
+    font-size: 0.875rem;
+    color: var(--color-white);
+    min-width: 240px;
+    max-width: 90vw;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.success {
+    background-color: var(--color-green-600);
+}
+
+.info {
+    background-color: var(--color-blue-600);
+}
+
+.warning {
+    background-color: var(--color-yellow-600);
+    color: var(--color-black);
+}
+
+.error {
+    background-color: var(--color-red-600);
+}
+
+.close {
+    position: absolute;
+    right: 0.5rem;
+    top: 0.5rem;
+    background: transparent;
+    border: none;
+    font-size: 1.125rem;
+    line-height: 1;
+    color: inherit;
+    cursor: pointer;
+    opacity: 0.75;
+}
+
+.close:hover {
+    opacity: 1;
+}

@@ -6,9 +6,21 @@ const devNullApi = createApi({
     baseQuery: nullBaseQuery(),
     endpoints(build) {
         return {
-            devNull: build.mutation<void, any>({
-                query: (_data: any) => {
-                    return { minDelay: 1000, maxDelay: 3000 };
+            devNull: build.mutation<
+                void,
+                Partial<
+                    Record<"minDelay" | "maxDelay" | "failRate", number>
+                > & {
+                    data?: any;
+                }
+            >({
+                query: ({
+                    minDelay = 1000,
+                    maxDelay = 3000,
+                    failRate = 0,
+                    ...rest
+                }) => {
+                    return { minDelay, maxDelay, failRate, ...rest };
                 },
             }),
         };

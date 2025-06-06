@@ -46,11 +46,22 @@ const randomDelay = (min: number, max: number) => {
 
 export const nullBaseQuery =
     (): BaseQueryFn<
-        { minDelay?: number; maxDelay?: number },
+        { minDelay?: number; maxDelay?: number; failRate?: number },
         unknown,
-        unknown
+        { status: number; message: string }
     > =>
-    async ({ minDelay = 500, maxDelay = 5000 }) => {
+    async ({ minDelay = 500, maxDelay = 5000, failRate = 0 }) => {
         await randomDelay(minDelay, maxDelay);
+
+        const shouldFail = Math.random() < failRate;
+        if (shouldFail) {
+            return {
+                error: {
+                    status: 500,
+                    message: "Simulated server error",
+                },
+            };
+        }
+
         return { data: null };
     };

@@ -2,6 +2,7 @@ import { Route, Routes } from "react-router";
 import "./App.css";
 import Navbar from "./components/Navbar";
 import React, { Suspense } from "react";
+import Notifications from "./components/Notifications";
 
 const HomePage = React.lazy(() => import("./pages/HomePage"));
 const CatalogPage = React.lazy(() => import("./pages/CatalogPage"));
@@ -34,6 +35,7 @@ function App() {
             <Route path="/*" element={<ErrorPage />} />
           </Routes>
         </Suspense>
+        <Notifications />
       </main>
     </>
   );
