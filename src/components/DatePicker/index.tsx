@@ -65,6 +65,7 @@ const DatePicker: React.FC<DatePickerProps> = ({
         readOnly
         className={css.input}
         value={selected ? format(selected, "PPPP") : ""}
+        onFocus={() => setIsOpen(true)}
         onClick={() => setIsOpen(true)}
       />
 
