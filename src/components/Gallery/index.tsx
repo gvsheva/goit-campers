@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import css from "./Gallery.module.css";
 import type { GalleryImage } from "../../types/camper";
 import Image from "../Image";
+import { FaAngleLeft, FaAngleRight, FaTimes } from "react-icons/fa";
 
 interface GalleryProps {
   images: GalleryImage[];
@@ -44,13 +45,13 @@ const Gallery: React.FC<GalleryProps> = ({ images }) => {
               className={css.fullImage}
             />
             <button className={css.closeButton} onClick={close}>
-              &times;
+              <FaTimes />
             </button>
             <button className={css.navLeft} onClick={showPrev}>
-              &lang;
+              <FaAngleLeft />
             </button>
             <button className={css.navRight} onClick={showNext}>
-              &rang;
+              <FaAngleRight />
             </button>
           </div>
         </div>

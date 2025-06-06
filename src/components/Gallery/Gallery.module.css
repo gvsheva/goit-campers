@@ -58,22 +58,28 @@
     border-radius: 0.75rem;
 }
 
-.closeButton {
+.closeButton,
+.navLeft,
+.navRight {
     position: absolute;
-    top: 0.5rem;
-    right: 1rem;
     background-color: rgba(0, 0, 0, 0.5);
     border: none;
-    font-size: 1.8rem;
     color: var(--color-white);
-    border-radius: 9999px;
-    width: 2rem;
-    height: 2rem;
+    border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
     transition: background-color 0.2s ease;
+    font-size: 1.3rem;
+    width: 2.5rem;
+    height: 2.5rem;
+    z-index: 1001;
+}
+
+.closeButton {
+    top: 0.5rem;
+    right: 1rem;
 }
 
 .closeButton:hover {
@@ -81,22 +87,9 @@
 }
 .navLeft,
 .navRight {
-    position: absolute;
     top: 50%;
     transform: translateY(-50%);
     background-color: rgba(0, 0, 0, 0.5);
-    border: none;
-    color: var(--color-white);
-    font-size: 2rem;
-    width: 2.5rem;
-    height: 2.5rem;
-    border-radius: 9999px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    z-index: 1001;
-    transition: background-color 0.2s ease;
 }
 
 .navLeft:hover,
