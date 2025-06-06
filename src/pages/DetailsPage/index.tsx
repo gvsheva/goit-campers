@@ -10,6 +10,7 @@ import CamperMeta from "../../components/CamperMeta";
 import Spinner from "../../components/Spinner";
 import type { Camper } from "../../types/camper";
 import Notice from "../../components/Notice";
+import { Suspense } from "react";
 
 interface DetalsProps {
   camper: Camper;
@@ -45,7 +46,9 @@ const Details: React.FC<DetalsProps> = ({ camper }) => {
         />
         <div className={css.tab}>
           <div className={css.outlet}>
-            <Outlet context={camper} />
+            <Suspense fallback={<Spinner className={css.outletSpinner} />}>
+              <Outlet context={camper} />
+            </Suspense>
           </div>
           <BookingForm />
         </div>

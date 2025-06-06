@@ -47,4 +47,14 @@
 .outlet {
     max-width: 600px;
     display: flex;
+    flex: 1;
+    position: relative;
+}
+
+.outletSpinner {
+    height: 25%;
+    aspect-ratio: 1;
+    position: absolute;
+    top: calc(50% - 25% / 2);
+    left: calc(50% - 25% / 2);
 }
