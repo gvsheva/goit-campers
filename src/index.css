@@ -29,3 +29,10 @@ a {
   border: 0;
   outline: none;
 }
+
+img {
+  display: block;
+  object-fit: cover;
+  overflow: hidden;
+  display: block;
+}

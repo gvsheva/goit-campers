@@ -28,6 +28,10 @@
     color: var(--color-black);
 }
 
+.notice {
+    align-self: flex-start;
+}
+
 .description {
     font-size: 0.95rem;
     color: var(--color-gray-800);

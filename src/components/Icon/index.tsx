@@ -1,5 +1,8 @@
 import React, { Suspense, useMemo } from "react";
 import type { IconName } from "../../types/icon-names";
+import Spinner from "../Spinner";
+import css from "./Icon.module.css";
+import classNames from "classnames";
 
 interface IconProps extends React.SVGProps<SVGSVGElement> {
   name: IconName;
@@ -10,7 +13,7 @@ const icons = {} as Record<
   React.LazyExoticComponent<React.FC<React.SVGProps<SVGSVGElement>>>
 >;
 
-const Icon: React.FC<IconProps> = ({ name, ...props }) => {
+const Icon: React.FC<IconProps> = ({ name, className, ...props }) => {
   const SvgIcon = useMemo(() => {
     let icon = icons[name];
     if (icon) return icon;
@@ -19,9 +22,11 @@ const Icon: React.FC<IconProps> = ({ name, ...props }) => {
     return icon;
   }, [name]);
   return (
-    <Suspense fallback={null}>
-      <SvgIcon {...props} />
-    </Suspense>
+    <div className={classNames(className, css.wrapper)}>
+      <Suspense fallback={<Spinner className={css.spinner} />}>
+        <SvgIcon {...props} className={css.icon} />
+      </Suspense>
+    </div>
   );
 };
 

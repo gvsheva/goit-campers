@@ -1,0 +1,26 @@
+@import "../../styles/variables.css";
+
+.wrapper {
+    overflow: hidden;
+    position: relative;
+}
+
+.spinner {
+    width: 25%;
+    aspect-ratio: 1;
+    position: absolute;
+    top: calc(50% - 25% / 2);
+    left: calc(50% - 25% / 2);
+}
+
+.image {
+    transition: opacity 0.3s ease;
+}
+
+.hidden {
+    opacity: 0;
+}
+
+.visible {
+    opacity: 1;
+}

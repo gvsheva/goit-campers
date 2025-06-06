@@ -9,6 +9,7 @@ import CamperFeaturesList from "../CamperFeaturesList";
 import { useAppDispatch, useAppSelector } from "../../hooks";
 import { selectFavorites } from "../../redux/selectors";
 import { addToFavorites, removeFromFavorites } from "../../redux/slices";
+import Image from "../Image";
 
 interface CamperListCardProps {
   camper: Camper;
@@ -23,7 +24,11 @@ const CamperListCard: React.FC<CamperListCardProps> = ({ camper }) => {
 
   return (
     <div className={css.card}>
-      <img src={gallery[0]?.thumb} alt={name} className={css.image} />
+      <Image
+        src={gallery[0]?.thumb ?? "/camper.jpg"}
+        alt={name}
+        className={css.image}
+      />
       <div className={css.content}>
         <div className={css.header}>
           <h3 className={css.title}>{name}</h3>

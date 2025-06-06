@@ -9,12 +9,14 @@ import BookingForm from "../../components/BookingForm";
 import CamperMeta from "../../components/CamperMeta";
 import Spinner from "../../components/Spinner";
 import type { Camper } from "../../types/camper";
+import Notice from "../../components/Notice";
 
 interface DetalsProps {
   camper: Camper;
 }
 
 const Details: React.FC<DetalsProps> = ({ camper }) => {
+  const images = camper.gallery || [];
   return (
     <>
       <h1 className={css.title}>{camper.name}</h1>
@@ -26,7 +28,13 @@ const Details: React.FC<DetalsProps> = ({ camper }) => {
         />
       </div>
       <div className={css.price}>€{camper.price.toFixed(2)}</div>
-      <Gallery images={camper?.gallery || []} />
+      {images.length > 0 ? (
+        <Gallery images={camper.gallery || []} />
+      ) : (
+        <Notice type="info" className={css.notice}>
+          This camper is shy and didn’t want its photo taken
+        </Notice>
+      )}
       <p className={css.description}>{camper.description}</p>
       <div>
         <Tabs

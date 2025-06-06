@@ -57,7 +57,11 @@ const Filters = () => {
           loading={locationsAreLoading}
           onChange={(value) =>
             setSearchParams((p) => {
-              p.set("location", value);
+              if (value) {
+                p.set("location", value);
+              } else {
+                p.delete("location");
+              }
               return p;
             })
           }

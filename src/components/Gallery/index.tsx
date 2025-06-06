@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import css from "./Gallery.module.css";
 import type { GalleryImage } from "../../types/camper";
+import Image from "../Image";
 
 interface GalleryProps {
   images: GalleryImage[];
@@ -25,7 +26,7 @@ const Gallery: React.FC<GalleryProps> = ({ images }) => {
             className={css.thumbButton}
             onClick={() => setIndex(i)}
           >
-            <img src={img.thumb} alt="" className={css.thumb} />
+            <Image src={img.thumb} alt="" className={css.thumb} />
           </button>
         ))}
       </div>
@@ -37,7 +38,7 @@ const Gallery: React.FC<GalleryProps> = ({ images }) => {
             className={css.modalContent}
             onClick={(e) => e.stopPropagation()}
           >
-            <img
+            <Image
               src={images[index].original}
               alt=""
               className={css.fullImage}

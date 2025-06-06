@@ -23,9 +23,6 @@
 .thumb {
     width: 292px;
     height: 312px;
-    object-fit: cover;
-    overflow: hidden;
-    display: block;
     border-radius: 0.75rem;
     transition:
         transform 0.3s ease,

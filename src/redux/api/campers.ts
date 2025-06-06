@@ -82,6 +82,9 @@ const campersApi = createApi({
                 query: (id) => {
                     return { url: `campers/${id}` };
                 },
+                transformResponse: (response: Camper) => {
+                    return response;
+                },
                 providesTags: (_result, _error, id) => [{ type: "Camper", id }],
             }),
             getLocations: build.query<string[], null>({
@@ -90,8 +93,8 @@ const campersApi = createApi({
                         url: "campers",
                     };
                 },
-                transformResponse: (response: { items: Camper[] }) => {
-                    const locations = response.items
+                transformResponse: ({ items }: { items: Camper[] }) => {
+                    const locations = items
                         .map((item) => item.location)
                         .filter(
                             (loc, index, self) => self.indexOf(loc) === index,

@@ -4,7 +4,7 @@
     position: relative;
     width: 100%;
     height: calc(100vh - 4rem);
-    background-image: url("/hero.png");
+    background-image: url("/hero.jpg");
     background-size: cover;
     background-position: center;
     display: flex;

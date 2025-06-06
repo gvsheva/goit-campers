@@ -37,6 +37,13 @@
     color: var(--color-black);
 }
 
+.stars {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    gap: 0.2rem;
+}
+
 .comment {
     font-size: 0.95rem;
     color: var(--color-gray-800);
