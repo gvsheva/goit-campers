@@ -1,0 +1,48 @@
+@import "../../styles/variables.css";
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem 1rem;
+}
+
+.label {
+    font-size: 1rem;
+    color: var(--color-gray-800);
+    font-weight: 500;
+}
+
+.bar {
+    position: relative;
+    width: 10rem;
+    height: 0.5rem;
+    background-color: var(--color-gray-200);
+    border-radius: 9999px;
+    overflow: hidden;
+}
+
+.progress {
+    position: absolute;
+    top: 0;
+    left: -50%;
+    width: 50%;
+    height: 100%;
+    background-color: var(--color-red-500);
+    animation: loadingSlide 1.2s ease-in-out infinite;
+    border-radius: 9999px;
+}
+
+@keyframes loadingSlide {
+    0% {
+        left: -50%;
+    }
+    50% {
+        left: 100%;
+    }
+    100% {
+        left: 100%;
+    }
+}

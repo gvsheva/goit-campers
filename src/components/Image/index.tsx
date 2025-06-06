@@ -3,10 +3,9 @@ import css from "./Image.module.css";
 import classNames from "classnames";
 import LoaderOverlay from "../LoaderOverlay";
 
-interface ImageWithSpinnerProps
-  extends React.ImgHTMLAttributes<HTMLImageElement> {}
+interface ImageProps extends React.ImgHTMLAttributes<HTMLImageElement> {}
 
-const Image: React.FC<ImageWithSpinnerProps> = ({ className, ...props }) => {
+const Image: React.FC<ImageProps> = ({ className, ...props }) => {
   const [loading, setLoading] = useState(true);
   const hidden = useDeferredValue(loading);
 

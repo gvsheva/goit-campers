@@ -7,10 +7,10 @@ import Gallery from "../../components/Gallery";
 import Tabs from "../../components/Tabs";
 import BookingForm from "../../components/BookingForm";
 import CamperMeta from "../../components/CamperMeta";
-import Spinner from "../../components/Spinner";
 import type { Camper } from "../../types/camper";
 import Notice from "../../components/Notice";
 import { Suspense } from "react";
+import Loading from "../../components/Loading";
 
 interface DetalsProps {
   camper: Camper;
@@ -46,7 +46,7 @@ const Details: React.FC<DetalsProps> = ({ camper }) => {
         />
         <div className={css.tab}>
           <div className={css.outlet}>
-            <Suspense fallback={<Spinner className={css.outletSpinner} />}>
+            <Suspense fallback={<Loading />}>
               <Outlet context={camper} />
             </Suspense>
           </div>
@@ -65,11 +65,7 @@ const DetailsPage = () => {
   }
   return (
     <div className={css.container}>
-      {isLoading ? (
-        <Spinner className={css.spinner} />
-      ) : (
-        <Details camper={camper!} />
-      )}
+      {isLoading ? <Loading /> : <Details camper={camper!} />}
     </div>
   );
 };

@@ -5,7 +5,7 @@ import { useAppSelector } from "../../hooks";
 import { selectFilters } from "../../redux/selectors";
 import { useGetCampersQuery } from "../../redux/api/campers";
 import { Navigate, useSearchParams } from "react-router";
-import Spinner from "../Spinner";
+import Loading from "../Loading";
 
 const CampersList = () => {
   const filters = useAppSelector(selectFilters);
@@ -33,7 +33,7 @@ const CampersList = () => {
   return (
     <div className={css.container}>
       {isLoading && campers.length < 1 ? (
-        <Spinner className={css.spinner} />
+        <Loading />
       ) : (
         <>
           <ul className={css.list}>
