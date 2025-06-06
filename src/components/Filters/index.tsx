@@ -45,8 +45,22 @@ const Filters = () => {
     dispatch(setFilters(filters));
   }, [searchParams, dispatch]);
 
+  const setSearchParamsList = (
+    params: URLSearchParams,
+    name: string,
+    values: any[],
+  ) => {
+    const n = new URLSearchParams(params);
+    n.delete(name);
+    for (const v of values) {
+      n.append(name, v);
+    }
+    return n;
+  };
+
   const { data: locations = [], isLoading: locationsAreLoading } =
     useGetLocationsQuery(null);
+
   return (
     <div className={css.container}>
       <div className={css.locationBox}>
@@ -57,12 +71,13 @@ const Filters = () => {
           loading={locationsAreLoading}
           onChange={(value) =>
             setSearchParams((p) => {
+              const n = new URLSearchParams(p);
               if (value) {
-                p.set("location", value);
+                n.set("location", value);
               } else {
-                p.delete("location");
+                n.delete("location");
               }
-              return p;
+              return n;
             })
           }
         />
@@ -74,13 +89,7 @@ const Filters = () => {
           items={equipmentItems}
           selected={equipment || []}
           onChange={(value) =>
-            setSearchParams((p) => {
-              p.delete("equipment");
-              for (const item of value) {
-                p.append("equipment", item);
-              }
-              return p;
-            })
+            setSearchParams((p) => setSearchParamsList(p, "equipment", value))
           }
         />
         <FilterToggleGroup
@@ -88,13 +97,7 @@ const Filters = () => {
           items={typeItems}
           selected={types}
           onChange={(value) =>
-            setSearchParams((p) => {
-              p.delete("type");
-              for (const item of value) {
-                p.append("type", item);
-              }
-              return p;
-            })
+            setSearchParams((p) => setSearchParamsList(p, "type", value))
           }
         />
       </div>

@@ -1,16 +1,23 @@
-import { useState } from "react";
 import css from "./CampersList.module.css";
 import CamperListCard from "../CamperListCard";
 import Button from "../Button";
 import { useAppSelector } from "../../hooks";
 import { selectFilters } from "../../redux/selectors";
 import { useGetCampersQuery } from "../../redux/api/campers";
-import { Navigate } from "react-router";
+import { Navigate, useSearchParams } from "react-router";
 import Spinner from "../Spinner";
 
 const CampersList = () => {
   const filters = useAppSelector(selectFilters);
-  const [page, setPage] = useState(1);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const page = parseInt(searchParams.get("page") || "1", 10) || 1;
+  const setPage = (newPage: number) => {
+    setSearchParams((p) => {
+      const n = new URLSearchParams(p);
+      n.set("page", newPage.toString());
+      return n;
+    });
+  };
   const {
     data: { items: campers, totalPages } = { items: [], totalPages: 0 },
     error,
@@ -40,7 +47,7 @@ const CampersList = () => {
             <div className={css.loadMoreWrapper}>
               <Button
                 variant="outline"
-                onClick={() => setPage((p) => p + 1)}
+                onClick={() => setPage(page + 1)}
                 disabled={isLoading}
                 loading={isLoading}
               >
