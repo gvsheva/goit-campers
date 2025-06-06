@@ -20,11 +20,12 @@ const Button: React.FC<ButtonProps> = ({
   ...props
 }) => {
   return (
-    <div className={className}>
-      <button {...props} className={classNames(css.button, css[variant])}>
-        {loading ? <Spinner className={css.spinner} /> : children}
-      </button>
-    </div>
+    <button
+      {...props}
+      className={classNames(css.button, css[variant], className)}
+    >
+      {loading ? <Spinner className={css.spinner} /> : children}
+    </button>
   );
 };
 

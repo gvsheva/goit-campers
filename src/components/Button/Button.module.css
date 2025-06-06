@@ -1,6 +1,9 @@
 @import "../../styles/variables.css";
 
 .button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     border: none;
     border-radius: var(--radius-full);
     padding: 0.75rem 2rem;
