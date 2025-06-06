@@ -26,7 +26,7 @@ const BookingForm: React.FC = () => {
     email: undefined as string | undefined,
     date: undefined as string | undefined,
     comment: undefined as string | undefined,
-  };
+  } as Record<string, string | undefined>;
   const [errors, setErrors] = useState(initErrors);
 
   const handleChange = ({ name, value }: { name: string; value: string }) => {
